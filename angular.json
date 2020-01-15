@@ -5,7 +5,15 @@
   "projects": {
     "mosh-store": {
       "projectType": "application",
+<<<<<<< HEAD
       "schematics": {},
+=======
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+>>>>>>> 755f4f3... initialized angular, deleted unnecessary files and all comments
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -19,6 +27,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
+<<<<<<< HEAD
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -26,6 +35,10 @@
             "styles": [
               "src/styles.css"
             ],
+=======
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
+>>>>>>> 755f4f3... initialized angular, deleted unnecessary files and all comments
             "scripts": []
           },
           "configurations": {
@@ -84,6 +97,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+<<<<<<< HEAD
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -91,6 +105,10 @@
             "styles": [
               "src/styles.css"
             ],
+=======
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
+>>>>>>> 755f4f3... initialized angular, deleted unnecessary files and all comments
             "scripts": []
           }
         },
@@ -102,9 +120,13 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
+<<<<<<< HEAD
             "exclude": [
               "**/node_modules/**"
             ]
+=======
+            "exclude": ["**/node_modules/**"]
+>>>>>>> 755f4f3... initialized angular, deleted unnecessary files and all comments
           }
         },
         "e2e": {
@@ -120,6 +142,13 @@
           }
         }
       }
+<<<<<<< HEAD
     }},
   "defaultProject": "mosh-store"
 }
+=======
+    }
+  },
+  "defaultProject": "mosh-store"
+}
+>>>>>>> 755f4f3... initialized angular, deleted unnecessary files and all comments

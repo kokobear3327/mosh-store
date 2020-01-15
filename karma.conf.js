@@ -10,7 +10,11 @@ module.exports = function(config) {
       require("@angular-devkit/build-angular/plugins/karma")
     ],
     client: {
+<<<<<<< HEAD
       clearContext: false // leave Jasmine Spec Runner output visible in browser
+=======
+      clearContext: false
+>>>>>>> 755f4f3... initialized angular, deleted unnecessary files and all comments
     },
     coverageIstanbulReporter: {
       dir: require("path").join(__dirname, "./coverage/mosh-store"),

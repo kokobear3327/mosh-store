@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MoshStore
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
@@ -25,3 +26,14 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+=======
+# mosh-store
+
+Here is my apprenticeship project:
+
+git clone the repo down locally
+
+run npm install
+
+run npm start
+>>>>>>> 755f4f3... initialized angular, deleted unnecessary files and all comments

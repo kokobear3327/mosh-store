@@ -11,5 +11,9 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting()
 );
+<<<<<<< HEAD
+=======
+
+>>>>>>> 755f4f3... initialized angular, deleted unnecessary files and all comments
 const context = require.context("./", true, /\.spec\.ts$/);
 context.keys().map(context);
