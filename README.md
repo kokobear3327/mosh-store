@@ -1,2 +1,7 @@
-# mosh-store
-Here is my apprenticeship project
+# MoshStore
+
+git clone down the repo
+
+run npm install
+
+run npm start
