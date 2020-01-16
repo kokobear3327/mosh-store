@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
+import { BootstrapNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -23,7 +23,7 @@ import { AuthGuard } from './auth-guard.service';
 @NgModule({
   declarations: [
     AppComponent,
-    BsNavbarComponent,
+    BootstrapNavbarComponent,
     HomeComponent,
     ProductsComponent,
     ShoppingCartComponent,
