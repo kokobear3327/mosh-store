@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   selector: 'bs-navbar',
   templateUrl: './bs-navbar.component.html'
 })
+
 export class BootstrapNavbarComponent {
   constructor(public auth: AuthService) {}
 
