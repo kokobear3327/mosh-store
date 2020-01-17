@@ -26,6 +26,7 @@
     "dotenv": "^8.2.0",
     "firebase": "^7.6.2",
     "jquery": "^3.4.1",
+    "ng2-validation": "^4.2.0",
     "popper.js": "^1.16.0",
     "prettier": "^1.19.1",
     "rxjs": "~6.4.0",
