@@ -7,17 +7,16 @@ import { AppUser } from './models/app-user';
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private angularFireDatabase: AngularFireDatabase) {}
 
   save(user: firebase.User) {
-    this.db.object('/users' + user.uid).update({
+    this.angularFireDatabase.object('/users' + user.uid).update({
       name: user.displayName,
       email: user.email
     });
   }
 
-  // TODO:  This is needed later for admin functionality:
   get(uid: string): AngularFireObject<AppUser> {
-    return this.db.object('/users/' + uid);
+    return this.angularFireDatabase.object('/users/' + uid);
   }
 }
