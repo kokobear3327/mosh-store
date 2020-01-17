@@ -20,6 +20,9 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { UserService } from './user.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './product.service';
 
 @NgModule({
   declarations: [
@@ -33,10 +36,12 @@ import { UserService } from './user.service';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment),
     AngularFireDatabaseModule,
@@ -62,8 +67,13 @@ import { UserService } from './user.service';
         canActivate: [AuthGuard]
       },
       {
-        path: 'admin/products',
+        path: 'admin/products/create',
         component: AdminProductsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'admin/products/new',
+        component: ProductFormComponent,
         canActivate: [AuthGuard]
       },
       {
@@ -73,7 +83,7 @@ import { UserService } from './user.service';
       }
     ])
   ],
-  providers: [AuthService, AuthGuard, UserService],
+  providers: [AuthService, AuthGuard, UserService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
