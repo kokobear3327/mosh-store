@@ -2,7 +2,7 @@ import { CategoryService } from './../../category.service';
 import { ProductService } from './../../product.service';
 import { Category } from './../../models/category';
 import { Product } from './../../models/product';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
 
@@ -13,16 +13,21 @@ import { Component } from '@angular/core';
 export class ProductFormComponent {
   productsObservable: Observable<[Product]>;
   categoriesObservable: Observable<[Category]>;
+  product: Product;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private productService: ProductService,
     private categoryService: CategoryService
   ) {
-    //TODO: redo the save feature, it broke with recent integrated changes for some reason.
-
     this.productsObservable = productService.getProducts();
 
     this.categoriesObservable = categoryService.getCategories();
+  }
+
+  save(product) {
+    this.productService.create(product);
+    this.router.navigate(['/products']);
   }
 }
