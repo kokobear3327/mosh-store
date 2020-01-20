@@ -8,13 +8,15 @@ import { AngularFireDatabase } from '@angular/fire/database';
   providedIn: 'root'
 })
 export class ProductService {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private database: AngularFireDatabase) {}
 
   create(product) {
-    return this.db.list('/products').push(product);
+    return this.database.list('/products').push(product);
   }
 
   getProducts(): Observable<[Product]> {
-    return this.db.list('/products').valueChanges() as Observable<[Product]>;
+    return this.database.list('/products').valueChanges() as Observable<
+      [Product]
+    >;
   }
 }

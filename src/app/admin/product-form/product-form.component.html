@@ -54,7 +54,10 @@
           required
         >
           <option value=""></option>
-          <option *ngFor="let category of categories$" [value]="category.key">
+          <option
+            *ngFor="let category of categoriesObservable | async"
+            [value]="category.key"
+          >
             {{ category.name }}
           </option>
         </select>

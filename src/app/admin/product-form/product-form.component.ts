@@ -13,16 +13,18 @@ import { Component } from '@angular/core';
 export class ProductFormComponent {
   productsObservable: Observable<[Product]>;
   categoriesObservable: Observable<[Category]>;
+  product: Product;
 
   constructor(
     private router: Router,
     private productService: ProductService,
     private categoryService: CategoryService
   ) {
-    //TODO: redo the save feature, it broke with recent integrated changes for some reason.
-
-    this.productsObservable = productService.getProducts();
-
     this.categoriesObservable = categoryService.getCategories();
+  }
+
+  save(product) {
+    this.productService.create(product);
+    this.router.navigate(['/products']);
   }
 }
