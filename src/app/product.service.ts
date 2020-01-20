@@ -1,3 +1,6 @@
+import { Product } from './models/product';
+import { Observable } from 'rxjs';
+import { ProductsComponent } from './products/products.component';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 
@@ -11,7 +14,7 @@ export class ProductService {
     return this.db.list('/products').push(product);
   }
 
-  getProducts() {
-    return this.db.list('/products');
+  getProducts(): Observable<[Product]> {
+    return this.db.list('/products').valueChanges() as Observable<[Product]>;
   }
 }

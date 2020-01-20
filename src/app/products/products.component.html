@@ -2,7 +2,7 @@
   <div class="col-3">
     <div class="list-group">
       <a
-        *ngFor="let category of categories$"
+        *ngFor="let category of categoriesObservable | async"
         routerLink="/"
         [queryParams]="{ category: category.$key }"
         class="list-group-item list-group-item-action"
@@ -13,7 +13,9 @@
   </div>
   <div class="col">
     <div class="row">
-      <ng-container *ngFor="let product of products$; let i = index">
+      <ng-container
+        *ngFor="let product of productsObservable | async; let i = index"
+      >
         <div class="col">
           <div class="card" style="width: 18rem;">
             <img src="{{ product.imageUrl }} " class="card-img-top" />

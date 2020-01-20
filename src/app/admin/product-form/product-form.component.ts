@@ -1,6 +1,9 @@
-import { Router } from '@angular/router';
 import { CategoryService } from './../../category.service';
 import { ProductService } from './../../product.service';
+import { Category } from './../../models/category';
+import { Product } from './../../models/product';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,21 +11,18 @@ import { Component } from '@angular/core';
   templateUrl: './product-form.component.html'
 })
 export class ProductFormComponent {
-  categories$;
+  productsObservable: Observable<[Product]>;
+  categoriesObservable: Observable<[Category]>;
 
   constructor(
     private router: Router,
     private productService: ProductService,
     private categoryService: CategoryService
   ) {
-    categoryService
-      .getCategories()
-      .valueChanges()
-      .subscribe(category => (this.categories$ = category));
-  }
+    //TODO: redo the save feature, it broke with recent integrated changes for some reason.
 
-  save(product) {
-    this.productService.create(product);
-    this.router.navigate(['/products']);
+    this.productsObservable = productService.getProducts();
+
+    this.categoriesObservable = categoryService.getCategories();
   }
 }

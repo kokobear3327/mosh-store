@@ -1,3 +1,6 @@
+import { Category } from './../models/category';
+import { Product } from './../models/product';
+import { Observable } from 'rxjs';
 import { CategoryService } from './../category.service';
 import { ProductService } from './../product.service';
 import { Component } from '@angular/core';
@@ -7,19 +10,15 @@ import { Component } from '@angular/core';
   templateUrl: './products.component.html'
 })
 export class ProductsComponent {
-  products$;
-  categories$;
+  productsObservable: Observable<[Product]>;
+  categoriesObservable: Observable<[Category]>;
+
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService
   ) {
-    productService
-      .getProducts()
-      .valueChanges()
-      .subscribe(product => (this.products$ = product));
-    categoryService
-      .getCategories()
-      .valueChanges()
-      .subscribe(category => (this.categories$ = category));
+    this.productsObservable = productService.getProducts();
+
+    this.categoriesObservable = categoryService.getCategories();
   }
 }
