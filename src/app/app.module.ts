@@ -1,3 +1,4 @@
+import { CategoryService } from './category.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +50,7 @@ import { CustomFormsModule } from 'ng2-validation';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
@@ -85,7 +86,13 @@ import { CustomFormsModule } from 'ng2-validation';
       }
     ])
   ],
-  providers: [AuthService, AuthGuard, UserService, ProductService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    UserService,
+    ProductService,
+    CategoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

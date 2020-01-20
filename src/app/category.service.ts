@@ -1,20 +1,16 @@
-import { Product } from './models/product';
 import { Observable } from 'rxjs';
 import { ProductsComponent } from './products/products.component';
+import { Category } from './models/category';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class CategoryService {
   constructor(private db: AngularFireDatabase) {}
 
-  create(product) {
-    return this.db.list('/products').push(product);
-  }
-
-  getProducts(): Observable<[Product]> {
-    return this.db.list('/products').valueChanges() as Observable<[Product]>;
+  getCategories(): Observable<[Category]> {
+    return this.db.list('/categories').valueChanges() as Observable<[Category]>;
   }
 }
