@@ -1,15 +1,33 @@
 import { Product } from './../../models/product';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ProductService } from './../../product.service';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html'
 })
-export class AdminProductsComponent {
-  productsObservable: Observable<[Product]>;
+export class AdminProductsComponent implements OnDestroy {
+  products: Product[];
+  filteredProducts: Product[];
+  subscription: Subscription;
   constructor(private productService: ProductService) {
-    this.productsObservable = productService.getProductsObservable();
+    this.subscription = this.productService
+      .getProductsObservable()
+      .subscribe(
+        products => (this.filteredProducts = this.products = products)
+      );
+  }
+
+  filter(query: string) {
+    this.filteredProducts = query
+      ? this.products.filter(product =>
+          product.title.toLowerCase().includes(query.toLowerCase())
+        )
+      : this.products;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
