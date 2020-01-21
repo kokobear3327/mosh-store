@@ -10,6 +10,6 @@ import { Component } from '@angular/core';
 export class AdminProductsComponent {
   productsObservable: Observable<[Product]>;
   constructor(private productService: ProductService) {
-    this.productsObservable = productService.getProducts();
+    this.productsObservable = productService.getProductsObservable();
   }
 }
