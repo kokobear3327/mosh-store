@@ -20,6 +20,6 @@ export class BootstrapNavbarComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.cartObservable = await await this.shoppingCartService.getCart();
+    this.cartObservable = await this.shoppingCartService.getCart();
   }
 }
