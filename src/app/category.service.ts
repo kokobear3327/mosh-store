@@ -7,10 +7,10 @@ import { AngularFireDatabase } from '@angular/fire/database';
   providedIn: 'root'
 })
 export class CategoryService {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private database: AngularFireDatabase) {}
 
   getCategories() {
-    return this.db
+    return this.database
       .list('/categories', ref => {
         const sortByName = ref.orderByChild('name');
         return sortByName;
