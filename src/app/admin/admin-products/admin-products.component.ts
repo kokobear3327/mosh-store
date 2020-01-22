@@ -7,7 +7,7 @@ import { Component, OnDestroy } from '@angular/core';
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html'
 })
-export class AdminProductsComponent implements OnDestroy {
+export class ProductsComponent implements OnDestroy {
   products: Product[];
   filteredProducts: Product[];
   subscription: Subscription;
