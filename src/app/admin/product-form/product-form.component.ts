@@ -13,7 +13,7 @@ import { Component, OnDestroy } from '@angular/core';
 export class ProductFormComponent implements OnDestroy {
   productsObservable: Observable<[Product]>;
   categoriesObservable: Observable<[Category]>;
-  product: Product;
+  product = {} as Product;
   subscription: Subscription;
   id: String;
 

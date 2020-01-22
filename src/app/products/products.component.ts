@@ -1,24 +1,43 @@
-import { Category } from './../models/category';
+// import { CategoryService } from './../category.service';
+import { ActivatedRoute } from '@angular/router';
 import { Product } from './../models/product';
-import { Observable } from 'rxjs';
-import { CategoryService } from './../category.service';
+import { Observable, Subscription } from 'rxjs';
 import { ProductService } from './../product.service';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html'
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnDestroy {
   productsObservable: Observable<[Product]>;
-  categoriesObservable: Observable<[Category]>;
+  category: string;
+  filteredProducts: Product[];
+  products: Product[] = [];
+  productSubscription: Subscription;
 
   constructor(
-    private productService: ProductService,
-    private categoryService: CategoryService
+    private route: ActivatedRoute,
+    private productService: ProductService
   ) {
-    this.productsObservable = productService.getProducts();
+    this.productSubscription = productService
+      .getProducts()
+      .subscribe(
+        products => (this.filteredProducts = this.products = products)
+      );
 
-    this.categoriesObservable = categoryService.getCategories();
+    route.queryParamMap.subscribe(parameters => {
+      this.category = parameters.get('category');
+      this.filteredProducts = this.category
+        ? this.products.filter(
+            product =>
+              product.category.toLowerCase() === this.category.toLowerCase()
+          )
+        : this.products;
+    });
+  }
+
+  ngOnDestroy() {
+    this.productSubscription.unsubscribe();
   }
 }
