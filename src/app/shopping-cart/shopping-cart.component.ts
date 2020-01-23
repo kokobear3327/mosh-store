@@ -3,15 +3,16 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-shopping-cart',
-  templateUrl: './shopping-cart.component.html'
+  templateUrl: './shopping-cart.component.html',
+  styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  cartObservable;
+  cart;
 
   constructor(private shoppingCartService: ShoppingCartService) {}
 
   ngOnInit() {
-    this.cartObservable = this.shoppingCartService.getCart();
+    this.cart = this.shoppingCartService.getCart();
   }
 
   clearCart() {

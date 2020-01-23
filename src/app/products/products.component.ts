@@ -11,7 +11,7 @@ import { Component, OnDestroy } from '@angular/core';
   templateUrl: './products.component.html'
 })
 export class ProductsComponent implements OnDestroy {
-  cartObservable;
+  cart;
   products: Product[] = [];
   category: string;
   filteredProducts: Product[];
@@ -45,7 +45,7 @@ export class ProductsComponent implements OnDestroy {
   async ngOnInit() {
     this.productSubscription = (
       await this.shoppingCartService.getCart()
-    ).subscribe(cart => (this.cartObservable = cart));
+    ).subscribe(cart => (this.cart = cart));
   }
 
   ngOnDestroy() {
