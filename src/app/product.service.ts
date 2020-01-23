@@ -1,9 +1,9 @@
 import { Product } from './models/product';
 import { Observable } from 'rxjs';
-import { ProductsComponent } from './products/products.component';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { documentToDomainObject } from './shared/angular-firebase-utility';
 
 @Injectable({
@@ -16,13 +16,7 @@ export class ProductService {
     return this.database.list('/products').push(product);
   }
 
-  getProducts(): Observable<[Product]> {
-    return this.database.list('/products').valueChanges() as Observable<
-      [Product]
-    >;
-  }
-
-  getProductsObservable(): Observable<[Product]> {
+  getAllProductsAsObservables(): Observable<[Product]> {
     return this.database
       .list('/products')
       .snapshotChanges()
@@ -34,10 +28,10 @@ export class ProductService {
       );
   }
 
-  get(productId): Observable<Product> {
-    return this.database
+  get(productId) {
+    return (this.database
       .object('/products/' + productId)
-      .valueChanges() as Observable<Product>;
+      .valueChanges() as Observable<Product>).pipe(take(1));
   }
 
   update(productId, product) {

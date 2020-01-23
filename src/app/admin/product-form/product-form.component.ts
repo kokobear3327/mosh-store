@@ -4,14 +4,14 @@ import { Category } from './../../models/category';
 import { Product } from './../../models/product';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html'
 })
-export class ProductFormComponent implements OnDestroy {
-  productsObservable: Observable<[Product]>;
+export class ProductFormComponent {
   categoriesObservable: Observable<[Category]>;
   product = {} as Product;
   subscription: Subscription;
@@ -23,11 +23,12 @@ export class ProductFormComponent implements OnDestroy {
     private productService: ProductService,
     private categoryService: CategoryService
   ) {
-    this.categoriesObservable = categoryService.getCategories();
+    this.categoriesObservable = categoryService.getAllCategoriesAsObservables();
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id)
-      this.subscription = this.productService
+      this.productService
         .get(this.id)
+        .pipe(take(1))
         .subscribe(product => (this.product = product));
   }
 
@@ -42,9 +43,5 @@ export class ProductFormComponent implements OnDestroy {
       this.productService.delete(this.id);
       this.router.navigate(['admin/products/manage']);
     }
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe;
   }
 }

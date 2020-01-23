@@ -9,10 +9,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['/product-filter.component.scss']
 })
 export class ProductFilterComponent {
-  categories: Observable<[Category]>;
+  categoriesObservable: Observable<[Category]>;
   @Input('category') category;
 
   constructor(private categoryService: CategoryService) {
-    this.categories = this.categoryService.getCategories();
+    this.categoriesObservable = this.categoryService.getAllCategoriesAsObservables();
   }
 }

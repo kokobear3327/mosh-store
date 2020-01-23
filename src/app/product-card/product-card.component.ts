@@ -1,4 +1,6 @@
-import { Product } from './../models/product';
+import { ShoppingCartService } from './../shopping-cart.service';
+import { ShoppingCart } from './../models/shopping-cart';
+import { Product } from 'src/app/models/product';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -9,5 +11,10 @@ import { Component, Input } from '@angular/core';
 export class ProductCardComponent {
   @Input('product') product: Product;
   @Input('show-actions') showActions = true;
-  constructor() {}
+  @Input('shopping-cart') shoppingCart: ShoppingCart;
+  constructor(private shoppingCartService: ShoppingCartService) {}
+
+  addToCart() {
+    this.shoppingCartService.addToCart(this.product);
+  }
 }

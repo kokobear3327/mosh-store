@@ -9,7 +9,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class CategoryService {
   constructor(private db: AngularFireDatabase) {}
 
-  getCategories() {
+  getAllCategoriesAsObservables() {
     return this.db
       .list('/categories', ref => {
         const sortByName = ref.orderByChild('name');

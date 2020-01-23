@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './shopping-cart.service';
 import { CategoryService } from './category.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -27,6 +28,7 @@ import { ProductService } from './product.service';
 import { CustomFormsModule } from 'ng2-validation';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
     LoginComponent,
     ProductFormComponent,
     ProductCardComponent,
-    ProductFilterComponent
+    ProductFilterComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,6 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
     AngularFireAuthModule,
     RouterModule.forRoot([
       { path: '', component: ProductsComponent },
-      { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
       {
@@ -100,7 +102,8 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
     AuthGuard,
     UserService,
     ProductService,
-    CategoryService
+    CategoryService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })
