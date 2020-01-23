@@ -1,7 +1,8 @@
-// import { CategoryService } from './../category.service';
+import { ShoppingCartService } from './../shopping-cart.service';
+import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from './../models/product';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ProductService } from './../product.service';
 import { Component, OnDestroy } from '@angular/core';
 
@@ -10,31 +11,41 @@ import { Component, OnDestroy } from '@angular/core';
   templateUrl: './products.component.html'
 })
 export class ProductsComponent implements OnDestroy {
-  productsObservable: Observable<[Product]>;
+  cartObservable;
+  products: Product[] = [];
   category: string;
   filteredProducts: Product[];
-  products: Product[] = [];
   productSubscription: Subscription;
 
   constructor(
-    private route: ActivatedRoute,
-    private productService: ProductService
+    route: ActivatedRoute,
+    productService: ProductService,
+    private shoppingCartService: ShoppingCartService
   ) {
     this.productSubscription = productService
-      .getProducts()
-      .subscribe(
-        products => (this.filteredProducts = this.products = products)
-      );
+      .getAllProductsAsObservables()
+      .pipe(
+        switchMap(products => {
+          this.products = products;
+          return route.queryParamMap;
+        })
+      )
+      .subscribe(params => {
+        this.category = params.get('category');
 
-    route.queryParamMap.subscribe(parameters => {
-      this.category = parameters.get('category');
-      this.filteredProducts = this.category
-        ? this.products.filter(
-            product =>
-              product.category.toLowerCase() === this.category.toLowerCase()
-          )
-        : this.products;
-    });
+        this.filteredProducts = this.category
+          ? this.products.filter(
+              product =>
+                product.category.toLowerCase() === this.category.toLowerCase()
+            )
+          : this.products;
+      });
+  }
+
+  async ngOnInit() {
+    this.productSubscription = (
+      await this.shoppingCartService.getCart()
+    ).subscribe(cart => (this.cartObservable = cart));
   }
 
   ngOnDestroy() {

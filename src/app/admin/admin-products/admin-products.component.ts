@@ -13,7 +13,7 @@ export class AdminProductsComponent implements OnDestroy {
   subscription: Subscription;
   constructor(private productService: ProductService) {
     this.subscription = this.productService
-      .getProductsObservable()
+      .getAllProductsAsObservables()
       .subscribe(
         products => (this.filteredProducts = this.products = products)
       );
