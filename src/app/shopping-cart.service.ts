@@ -20,7 +20,6 @@ export class ShoppingCartService {
 
   getCart(): Observable<ShoppingCart> {
     const cartId = this.getOrCreateCartId();
-    console.log('cartid', cartId);
     return this.db
       .object('/shopping-carts/' + cartId)
       .valueChanges()
